@@ -10,7 +10,7 @@
         <!--Else its last node-->
         <button
           class="dt-uxd-button"
-          *ngFor="let edge of node.path"
+          *ngFor="let edge of node.path.sort()"
           [ngClass]="
           {
             'dt-uxd-yes': edge.text.toLowerCase().includes('yes'),

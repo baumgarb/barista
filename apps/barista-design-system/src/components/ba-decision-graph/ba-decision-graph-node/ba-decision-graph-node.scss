@@ -127,8 +127,9 @@
 .dt-uxd-task-node-wrapper {
   max-width: 100%;
   background-color: #fff;
-  border: 2px double $purple-600;
-  margin: 4px;
+  border-top: 2px double $purple-600;
+  // border-bottom: 2px double $purple-600;
+  margin: 20px 4px;
 }
 
 .dt-uxd-navigation {
