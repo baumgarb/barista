@@ -45,6 +45,7 @@ export const uxDecisionGraphGenerator = async () => {
     id: data.id,
     start: data.start,
     tasknode: data.tasknode,
+    order: data.order,
     text: markdown.render(data.text),
     path: data.path.map(pathData => ({
       text: pathData.text,

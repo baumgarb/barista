@@ -57,6 +57,9 @@ export class BaDecisionGraph implements OnInit {
         this.decisionGraphStartNodes.push(dataNode);
       }
     });
+    this.decisionGraphStartNodes.sort((a, b) => {
+      return a.order < b.order ? -1 : 1;
+    });
   }
 
   setSelectedStartNode(selectedStartNode: BaUxdNode): void {
