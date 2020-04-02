@@ -127,6 +127,7 @@ export interface BaStrapiUXDNodeBase extends BaStrapiBase {
   text: string;
   start: boolean;
   tasknode: boolean;
+  order: number;
 }
 
 export interface BaStrapiUXDNode extends BaStrapiUXDNodeBase {

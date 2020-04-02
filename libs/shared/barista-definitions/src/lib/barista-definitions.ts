@@ -173,6 +173,7 @@ export interface BaUxdNode {
   text: string;
   start: boolean;
   tasknode: boolean;
+  order: number;
   path: BaUxdEdge[];
 }
 
