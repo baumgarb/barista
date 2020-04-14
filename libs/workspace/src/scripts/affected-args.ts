@@ -38,7 +38,7 @@ export function isMasterOrReleaseBranch(): boolean {
 }
 
 /** Returns the base SHA of the commit or origin/master as fallback */
-async function affectedArgs(): Promise<string> {
+export async function affectedArgs(): Promise<string> {
   // Octokit API instance that can be used to make Github API calls.
   const githubApi = new Octokit({
     // in a fork it would be undefined

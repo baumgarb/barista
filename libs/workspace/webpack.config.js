@@ -5,6 +5,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 // ENTRY bundles
 const entries = [
   'src/scripts/affected-args.ts',
+  'src/scripts/run-parallel.ts',
   'src/builders/barista-build/builder.ts',
   'src/builders/typescript/index.ts',
   'src/builders/packager/index.ts',
