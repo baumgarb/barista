@@ -75,5 +75,10 @@ export class BaDecisionGraph implements OnInit {
 
   resetProgress(): void {
     this.selectedStartNode = undefined;
+    this.isSelected();
+  }
+
+  isSelected(): boolean {
+    return this.selectedStartNode ? true : false;
   }
 }

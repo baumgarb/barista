@@ -1,5 +1,6 @@
 <ba-decision-graph-start-node
   [startNodes]="decisionGraphStartNodes"
+  [_isSelected]="isSelected()"
   (selectedNode)="setSelectedStartNode($event)"
 ></ba-decision-graph-start-node>
 <ba-decision-graph-node

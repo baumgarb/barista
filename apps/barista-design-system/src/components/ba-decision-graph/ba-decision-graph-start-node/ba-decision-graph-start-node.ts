@@ -34,6 +34,7 @@ export class BaDecisionGraphStartNode implements OnInit {
   _selectedStartNode: BaUxdNode;
 
   /** @internal whether a startnode is selected */
+  @Input()
   _isSelected = false;
 
   constructor(private _sanitizer: DomSanitizer) {}

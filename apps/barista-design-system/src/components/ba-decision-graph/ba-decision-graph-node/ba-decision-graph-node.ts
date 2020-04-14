@@ -104,12 +104,14 @@ export class BaDecisionGraphNode implements OnInit {
 
   /** Removes the last step in the decisionGraphSteps array */
   undoLastStep(): void {
-    this.decisionGraphSteps[
-      this.decisionGraphSteps.length - 2
-    ] = this.setSelectedStateOfEdge(
-      this.decisionGraphSteps[this.decisionGraphSteps.length - 2],
-      undefined,
-    );
+    if (this.decisionGraphSteps.length > 1) {
+      this.decisionGraphSteps[
+        this.decisionGraphSteps.length - 2
+      ] = this.setSelectedStateOfEdge(
+        this.decisionGraphSteps[this.decisionGraphSteps.length - 2],
+        undefined,
+      );
+    }
     this.decisionGraphSteps.splice(this.decisionGraphSteps.length - 1, 1);
     if (this.decisionGraphSteps.length === 0) this.startOver.emit();
   }
