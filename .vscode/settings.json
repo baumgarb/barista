@@ -3,7 +3,4 @@
   "files.eol": "\n",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "typescript.tsdk": "node_modules/typescript/lib",
-  "liveshare.allowGuestDebugControl": true,
-  "liveshare.allowGuestTaskControl": true,
-  "liveshare.publishWorkspaceInfo": true
 }
