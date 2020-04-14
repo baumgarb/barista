@@ -27,8 +27,14 @@ export class BaDecisionGraphStartNode implements OnInit {
   @Input('startNodes')
   decisionGraphStartNodes: BaUxdNode[] = [];
 
+  /** Emits the selected startnode for pathing through nodes */
   @Output('selectedNode')
   nodeEvent = new EventEmitter<BaUxdNode>();
+
+  _selectedStartNode: BaUxdNode;
+
+  /** @internal whether a startnode is selected */
+  _isSelected = false;
 
   constructor(private _sanitizer: DomSanitizer) {}
 
@@ -43,7 +49,21 @@ export class BaDecisionGraphStartNode implements OnInit {
     return this._sanitizer.bypassSecurityTrustHtml(nodeText);
   }
 
-  selectedStartNode(node: BaUxdNode): void {
+  selectStartNode(node: BaUxdNode): void {
+    this._isSelected = true;
+    this._selectedStartNode = node;
     this.nodeEvent.emit(node);
+  }
+
+  /**
+   * Checks which startNode was selected to set the css class too
+   * @param index index of ngFor loop
+   * @param startNode selected startNode
+   */
+  isSelectedStartnode(index: number): boolean {
+    return this.decisionGraphStartNodes.indexOf(this._selectedStartNode) ===
+      index
+      ? true
+      : false;
   }
 }

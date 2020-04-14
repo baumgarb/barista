@@ -1,29 +1,29 @@
 <div class="dt-uxd-node" *ngIf="node">
   <div *ngFor="let node of decisionGraphSteps">
     <ng-container *ngIf="!node.tasknode">
-      <!-- <div class="dt-uxd-flex"> -->
-      <div
-        class="dt-uxd-node-content"
-        [innerHTML]="getSanitizedNodeText(node.text)"
-      ></div>
-      <div class="dt-uxd-node-edges" *ngIf="node.path.length">
-        <!--Else its last node-->
-        <button
-          class="dt-uxd-button"
-          *ngFor="let edge of node.path.sort()"
-          [ngClass]="
+      <div class="dt-uxd-node-grid">
+        <div
+          class="dt-uxd-node-content"
+          [innerHTML]="getSanitizedNodeText(node.text)"
+        ></div>
+        <div class="dt-uxd-node-edges" *ngIf="node.path.length">
+          <!--Else its last node-->
+          <button
+            class="dt-uxd-button"
+            *ngFor="let edge of node.path.sort()"
+            [ngClass]="
           {
             'dt-uxd-yes': edge.text.toLowerCase().includes('yes'),
             'dt-uxd-no': edge.text.toLowerCase().includes('no'),
             'dt-uxd-got-it': edge.text.toLowerCase().includes('got')
           }"
-          [disabled]="edge.selected === false"
-          (click)="setNextNode(edge)"
-        >
-          {{edge.text}}
-        </button>
+            [disabled]="edge.selected === false"
+            (click)="setNextNode(edge)"
+          >
+            {{edge.text}}
+          </button>
+        </div>
       </div>
-      <!-- </div> -->
     </ng-container>
     <div *ngIf="node.tasknode" class="dt-uxd-task-node-wrapper">
       <div

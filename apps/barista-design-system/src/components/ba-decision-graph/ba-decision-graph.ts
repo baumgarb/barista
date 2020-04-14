@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BaPageService } from 'apps/barista-design-system/src/shared/services/page.service';
 import { BaUxdNode } from '@dynatrace/shared/barista-definitions';
 
@@ -28,8 +28,6 @@ export class BaDecisionGraph implements OnInit {
 
   /** Data needed to render the navigation. */
   private _decisionGraphData$ = this._pageService._getPage('uxdg-data');
-
-  startOver: any;
 
   /** Array of all nodes and edges */
   decisionGraphData: BaUxdNode[] = [];
