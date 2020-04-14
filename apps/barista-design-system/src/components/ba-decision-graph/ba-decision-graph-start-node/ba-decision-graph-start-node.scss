@@ -15,7 +15,7 @@
 
 .dt-uxd-startnode {
   border: 4px solid #00a1b2;
-  border-radius: 3px;
+  border-radius: 2px;
   margin: 4px;
 
   &:hover {
@@ -26,10 +26,10 @@
   &:active {
     border: 4px solid #006d75;
   }
+}
 
-  &:visited {
-    background-color: aqua;
-  }
+.dt-uxd-startnode-visited {
+  background-color: #e1f7f9;
 }
 
 .dt-uxd-startnode-content {

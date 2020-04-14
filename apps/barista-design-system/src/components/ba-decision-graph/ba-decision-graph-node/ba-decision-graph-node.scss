@@ -17,9 +17,10 @@
 
 .dt-uxd-node {
   height: auto;
-  width: 100%;
+  // width: 100%;
   border-top: 2px solid #00a1b2;
   border-bottom: 2px solid #00a1b2;
+  margin: 4px;
 }
 
 .dt-uxd-flex {
@@ -30,9 +31,14 @@
   flex-shrink: 0;
 }
 
+.dt-uxd-node-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
 .dt-uxd-node-content {
   width: fit-content;
-  margin: 4px auto;
+  margin: 4px;
   padding: 4px;
   border-radius: 2px;
 }
