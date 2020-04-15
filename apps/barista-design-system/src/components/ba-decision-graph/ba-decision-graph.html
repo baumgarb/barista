@@ -1,10 +1,10 @@
 <ba-decision-graph-start-node
-  [startNodes]="decisionGraphStartNodes"
-  [_isSelected]="isSelected()"
+  [startnodes]="_decisionGraphStartNodes"
   (selectedNode)="setSelectedStartNode($event)"
 ></ba-decision-graph-start-node>
 <ba-decision-graph-node
-  *ngIf="selectedStartNode"
-  [node]="selectedStartNode"
-  (startOver)="resetProgress()"
+  *ngIf="_selectedStartnode"
+  [node]="_selectedStartnode"
+  [decisionGraphData]="_decisionGraphData"
+  (startOver)="resetToInitial()"
 ></ba-decision-graph-node>
