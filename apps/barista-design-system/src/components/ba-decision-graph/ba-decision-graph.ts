@@ -29,56 +29,55 @@ export class BaDecisionGraph implements OnInit {
   /** Data needed to render the navigation. */
   private _decisionGraphData$ = this._pageService._getPage('uxdg-data');
 
-  /** Array of all nodes and edges */
-  decisionGraphData: BaUxdNode[] = [];
+  /** @internal Array of all nodes and edges */
+  _decisionGraphData: BaUxdNode[] = [];
 
-  /** Array of all nodes and edges which should be displayed */
-  decisionGraphStartNodes: BaUxdNode[] = [];
+  /** @internal Array of all nodes and edges which should be displayed */
+  _decisionGraphStartNodes: BaUxdNode[] = [];
 
-  /** Contains the start node the user has picked */
-  selectedStartNode: BaUxdNode | undefined;
+  /** @internal Contains the start node the user has picked */
+  _selectedStartnode: BaUxdNode | undefined;
 
-  //TODO: add correct Type (add to pageservice)
   constructor(private _pageService: BaPageService<any>) {}
 
   ngOnInit(): void {
     this._decisionGraphData$.subscribe(data => {
-      this.decisionGraphData = data;
+      this._decisionGraphData = data;
       this.getStartNodes();
     });
   }
 
   /** Gets all starting nodes from decisionGraphData */
   getStartNodes(): void {
-    this.decisionGraphData.forEach(dataNode => {
-      if (dataNode.start) {
-        this.decisionGraphStartNodes.push(dataNode);
+    this._decisionGraphData.forEach(node => {
+      if (node.start) {
+        this._decisionGraphStartNodes.push(node);
       }
     });
-    this.decisionGraphStartNodes.sort((a, b) => {
+    this._decisionGraphStartNodes.sort((a, b) => {
       return a.order < b.order ? -1 : 1;
     });
   }
 
-  setSelectedStartNode(selectedStartNode: BaUxdNode): void {
+  /** Sets the currently selected startnode when emitted from startnode component */
+  setSelectedStartNode(selectedStartnode: BaUxdNode): void {
     let id;
-    //skip first edge. Remove 'NOT SO SURE' edges from STRAPI
-    selectedStartNode.path.forEach(edge => {
+    // skip first edge (not so sure).
+    selectedStartnode.path.forEach(edge => {
       id = edge.uxd_node;
     });
-    this.decisionGraphData.forEach(data => {
+    this._decisionGraphData.forEach(data => {
       if (data.id === id) {
-        this.selectedStartNode = data;
+        this._selectedStartnode = data;
+      } else {
+        console.error(`No nodes with id: ${id}`);
       }
     });
+    // When removed change to: this._selectedStartnode = selectedStartnode;
   }
 
-  resetProgress(): void {
-    this.selectedStartNode = undefined;
-    this.isSelected();
-  }
-
-  isSelected(): boolean {
-    return this.selectedStartNode ? true : false;
+  /** Reset to initial state */
+  resetToInitial(): void {
+    this._selectedStartnode = undefined;
   }
 }

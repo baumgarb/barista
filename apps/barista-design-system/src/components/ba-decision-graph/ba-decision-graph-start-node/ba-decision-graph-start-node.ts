@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { BaUxdNode } from '@dynatrace/shared/barista-definitions';
 import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
 
@@ -23,25 +23,19 @@ import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
   templateUrl: './ba-decision-graph-start-node.html',
   styleUrls: ['./ba-decision-graph-start-node.scss'],
 })
-export class BaDecisionGraphStartNode implements OnInit {
-  @Input('startNodes')
+export class BaDecisionGraphStartNode {
+  @Input('startnodes')
   decisionGraphStartNodes: BaUxdNode[] = [];
 
   /** Emits the selected startnode for pathing through nodes */
   @Output('selectedNode')
-  nodeEvent = new EventEmitter<BaUxdNode>();
+  startnodeSelected = new EventEmitter<BaUxdNode>();
 
-  _selectedStartNode: BaUxdNode;
-
-  /** @internal whether a startnode is selected */
-  @Input()
-  _isSelected = false;
+  /** @internal currently selected startnode */
+  _selectedStartnode: BaUxdNode;
 
   constructor(private _sanitizer: DomSanitizer) {}
 
-  ngOnInit(): void {}
-
-  // TODO: Error handling when undefined
   /**
    * Converts a string to SafeHtml using the DomSanitizer
    * @param nodeText string to be converted to SafeHtml
@@ -50,21 +44,19 @@ export class BaDecisionGraphStartNode implements OnInit {
     return this._sanitizer.bypassSecurityTrustHtml(nodeText);
   }
 
+  /** Sets selected startnode and emits it */
   selectStartNode(node: BaUxdNode): void {
-    this._isSelected = true;
-    this._selectedStartNode = node;
-    this.nodeEvent.emit(node);
+    this._selectedStartnode = node;
+    this.startnodeSelected.emit(this._selectedStartnode);
   }
 
   /**
-   * Checks which startNode was selected to set the css class too
+   * Checks which startnode was selected for styling.
    * @param index index of ngFor loop
-   * @param startNode selected startNode
    */
   isSelectedStartnode(index: number): boolean {
-    return this.decisionGraphStartNodes.indexOf(this._selectedStartNode) ===
-      index
-      ? true
-      : false;
+    return (
+      this.decisionGraphStartNodes.indexOf(this._selectedStartnode) === index
+    );
   }
 }

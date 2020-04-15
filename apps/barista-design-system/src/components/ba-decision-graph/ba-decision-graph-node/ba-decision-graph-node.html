@@ -1,31 +1,28 @@
 <div class="dt-uxd-node" *ngIf="node">
   <div *ngFor="let node of decisionGraphSteps">
-    <ng-container *ngIf="!node.tasknode">
-      <div class="dt-uxd-node-grid">
-        <div
-          class="dt-uxd-node-content"
-          [innerHTML]="getSanitizedNodeText(node.text)"
-        ></div>
-        <div class="dt-uxd-node-edges" *ngIf="node.path.length">
-          <!--Else its last node-->
-          <button
-            class="dt-uxd-button"
-            *ngFor="let edge of node.path.sort()"
-            [ngClass]="
+    <div class="dt-uxd-node-grid" *ngIf="!node.tasknode">
+      <div
+        class="dt-uxd-node-content"
+        [innerHTML]="getSanitizedNodeText(node.text)"
+      ></div>
+      <div class="dt-uxd-node-edges" *ngIf="node.path.length">
+        <button
+          class="dt-uxd-button"
+          *ngFor="let edge of node.path.sort()"
+          [ngClass]="
           {
             'dt-uxd-yes': edge.text.toLowerCase().includes('yes'),
             'dt-uxd-no': edge.text.toLowerCase().includes('no'),
             'dt-uxd-got-it': edge.text.toLowerCase().includes('got')
           }"
-            [disabled]="edge.selected === false"
-            (click)="setNextNode(edge)"
-          >
-            {{edge.text}}
-          </button>
-        </div>
+          [disabled]="edge.selected === false"
+          (click)="setNextNode(edge)"
+        >
+          {{edge.text}}
+        </button>
       </div>
-    </ng-container>
-    <div *ngIf="node.tasknode" class="dt-uxd-task-node-wrapper">
+    </div>
+    <div class="dt-uxd-task-node-wrapper" *ngIf="node.tasknode">
       <div
         class="dt-uxd-task-node-content"
         [innerHTML]="getSanitizedNodeText(node.text)"
@@ -35,12 +32,16 @@
 </div>
 <!-- Navigation functionality -->
 <div class="dt-uxd-navigation" *ngIf="decisionGraphSteps.length > 0">
-  <button class="dt-uxd-button dt-uxd-back-button" (click)="undoLastStep()">
+  <button
+    class="dt-uxd-button dt-uxd-back-button"
+    *ngIf="decisionGraphSteps.length > 1"
+    (click)="undoLastStep()"
+  >
     Back
   </button>
   <button
     class="dt-uxd-button dt-uxd-start-over-button"
-    (click)="resetProgress()"
+    (click)="resetToInitial()"
   >
     Start Over
   </button>

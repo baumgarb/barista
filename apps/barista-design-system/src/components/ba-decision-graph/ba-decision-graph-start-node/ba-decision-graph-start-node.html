@@ -1,19 +1,17 @@
 <div class="dt-uxd-startnode-grid">
-  <ng-container
-    *ngFor="let startNode of decisionGraphStartNodes, let i = index"
-  >
+  <div *ngFor="let startnode of decisionGraphStartNodes, let i = index">
     <div
       class="dt-uxd-startnode"
       [ngClass]="{
-        'dt-uxd-startnode-visited': _isSelected && isSelectedStartnode(i)
+        'dt-uxd-startnode-visited': isSelectedStartnode(i)
       }"
       id="{{i}}"
     >
       <div
         class="dt-uxd-startnode-content"
-        [innerHTML]="getSanitizedNodeText(startNode.text)"
-        (click)="selectStartNode(startNode)"
+        [innerHTML]="getSanitizedNodeText(startnode.text)"
+        (click)="selectStartNode(startnode)"
       ></div>
     </div>
-  </ng-container>
+  </div>
 </div>
