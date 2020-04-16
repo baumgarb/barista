@@ -15,14 +15,6 @@
   margin-bottom: 0;
 }
 
-.dt-uxd-node {
-  height: auto;
-  // width: 100%;
-  border-top: 2px solid #00a1b2;
-  border-bottom: 2px solid #00a1b2;
-  margin: 4px;
-}
-
 .dt-uxd-flex {
   display: flex;
   flex-direction: row;
@@ -31,22 +23,26 @@
   flex-shrink: 0;
 }
 
-.dt-uxd-node-grid {
-  display: grid;
-  grid-template-columns: 1fr auto;
+.dt-uxd-node {
+  height: auto;
+  margin: 4px;
+}
+
+.dt-uxd-node-wrapper {
+  border-left: 2px solid #ccc;
+  padding-left: 24px;
+  margin-bottom: 68px;
 }
 
 .dt-uxd-node-content {
   width: fit-content;
-  margin: 4px;
-  padding: 4px;
+  margin-bottom: 20px;
   border-radius: 2px;
 }
 
 .dt-uxd-node-edges {
-  max-height: 36px;
   width: fit-content;
-  margin: 4px auto;
+  margin: 4px;
 }
 
 .dt-uxd-button {
@@ -66,79 +62,68 @@
 }
 
 .dt-uxd-yes {
-  background-color: $purple-600;
+  height: 44px;
+  width: 44px;
+  border-radius: 22px;
+  margin-right: 32px;
+  background-color: $royalblue-600;
 
   &:hover {
-    background-color: $purple-700;
-  }
-
-  &:active {
-    background-color: $purple-800;
+    background-color: $royalblue-700;
   }
 }
 
 .dt-uxd-no {
-  background-color: $red-500;
+  height: 44px;
+  width: 44px;
+  border-radius: 22px;
+  margin-right: 32px;
+  background-color: $royalblue-800;
 
   &:hover {
-    background-color: $red-600;
-  }
-
-  &:active {
-    background-color: $red-700;
+    background-color: $royalblue-900;
   }
 }
 
 .dt-uxd-got-it {
-  background-color: $purple-600;
+  background-color: $royalblue-600;
 
   &:hover {
-    background-color: $purple-700;
-  }
-
-  &:active {
-    background-color: $purple-800;
+    background-color: $royalblue-700;
   }
 }
 
 .dt-uxd-start-over-button {
-  background-color: $turquoise-500;
+  background-color: $royalblue-600;
 
   &:hover {
-    background-color: $turquoise-600;
-  }
-
-  &:active {
-    background-color: $turquoise-700;
+    background-color: $royalblue-700;
   }
 }
 
 .dt-uxd-back-button {
-  background-color: $purple-600;
+  background-color: $royalblue-600;
 
   &:hover {
-    background-color: $turquoise-600;
+    background-color: $royalblue-700;
   }
+}
 
-  &:active {
-    background-color: $turquoise-700;
-  }
+.dt-uxd-task-node-wrapper {
+  position: relative;
+  max-width: 100%;
+  background-color: $royalblue-600;
+  color: white;
+  border-left: 2px solid $royalblue-600;
+  padding: 24px;
+  margin-bottom: 44px;
 }
 
 .dt-uxd-task-node-content {
   margin: 0 auto;
-  padding: 4px;
-}
-
-.dt-uxd-task-node-wrapper {
-  max-width: 100%;
-  background-color: #fff;
-  border-top: 2px double $purple-600;
-  // border-bottom: 2px double $purple-600;
-  margin: 20px 4px;
 }
 
 .dt-uxd-navigation {
   width: fit-content;
-  margin: 4px auto;
+  // margin: 4px auto;
 }
