@@ -33,8 +33,8 @@ import { BaDecisiongraphNodeNavigation } from './ba-decision-graph-node/ba-decis
   exports: [
     BaDecisionGraph,
     BaDecisionGraphNode,
-    BaDecisionGraphStartNode,
     BaDecisiongraphNodeNavigation,
+    BaDecisionGraphStartNode,
   ],
 })
 export class BaDecisionGraphModule {}

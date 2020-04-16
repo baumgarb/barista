@@ -24,6 +24,7 @@ import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./ba-decision-graph-start-node.scss'],
 })
 export class BaDecisionGraphStartNode {
+  /** Array of startnodes */
   @Input('startnodes')
   decisionGraphStartnodes: BaUxdNode[] = [];
 
@@ -44,15 +45,14 @@ export class BaDecisionGraphStartNode {
     return this._sanitizer.bypassSecurityTrustHtml(nodeText);
   }
 
-  /** Sets selected startnode and emits it */
-  selectStartnode(node: BaUxdNode): void {
-    this._selectedStartnode = node;
+  /** Sets and emits selected startnode */
+  selectStartnode(startnode: BaUxdNode): void {
+    this._selectedStartnode = startnode;
     this.startnodeSelected.emit(this._selectedStartnode);
   }
 
   /**
-   * Checks which startnode was selected for styling.
-   * @param index index of ngFor loop
+   * Checks which startnode was selected.
    */
   isSelectedStartnode(index: number): boolean {
     return (

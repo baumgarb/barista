@@ -25,18 +25,16 @@ import { cloneDeep } from 'lodash';
   styleUrls: ['./ba-decision-graph.scss'],
 })
 export class BaDecisionGraph implements OnInit {
-  // Todo: Scroll to bottom functionality when user starts nodeloop.
-
-  /** Data needed to render the navigation. */
+  /** Data from database */
   private _decisionGraphData$ = this._pageService._getPage('uxdg-data');
 
   /** @internal Array of all nodes and edges */
   _decisionGraphData: BaUxdNode[] = [];
 
-  /** @internal Array of all nodes and edges which should be displayed */
-  _decisionGraphStartNodes: BaUxdNode[] = [];
+  /** @internal Array of all startnodes  which should be displayed */
+  _decisionGraphStartnodes: BaUxdNode[] = [];
 
-  /** @internal Contains the start node the user has picked */
+  /** @internal Contains the startnode the user has selected */
   _selectedStartnode: BaUxdNode | undefined;
 
   constructor(private _pageService: BaPageService<any>) {}
@@ -52,14 +50,14 @@ export class BaDecisionGraph implements OnInit {
   getStartNodes(): void {
     this._decisionGraphData.forEach(node => {
       if (node.start) {
-        this._decisionGraphStartNodes.push(cloneDeep(node));
+        this._decisionGraphStartnodes.push(cloneDeep(node));
       }
     });
-    this._decisionGraphStartNodes.sort((a, b) => a.order - b.order);
+    this._decisionGraphStartnodes.sort((a, b) => a.order - b.order);
   }
 
   /** Sets the currently selected startnode when emitted from startnode component */
-  setSelectedStartNode(selectedStartnode: BaUxdNode): void {
+  setSelectedStartnode(selectedStartnode: BaUxdNode): void {
     let id;
     // skip first edge (not so sure).
     selectedStartnode.path.forEach(edge => {
@@ -70,7 +68,6 @@ export class BaDecisionGraph implements OnInit {
         this._selectedStartnode = cloneDeep(data);
       }
     });
-    // When removed change to: this._selectedStartnode = selectedStartnode;
   }
 
   /** Reset to initial state */
