@@ -1,5 +1,4 @@
-<div *ngIf="startnode">
-  {{_decisionGraphSteps}}
+<div *ngIf="_startnode">
   <div *ngFor="let node of _decisionGraphSteps">
     <div class="ba-uxd-node-wrapper" *ngIf="!node.tasknode">
       <div

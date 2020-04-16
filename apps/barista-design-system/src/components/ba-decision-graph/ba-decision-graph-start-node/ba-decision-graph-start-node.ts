@@ -25,7 +25,7 @@ import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
 })
 export class BaDecisionGraphStartNode {
   @Input('startnodes')
-  decisionGraphStartNodes: BaUxdNode[] = [];
+  decisionGraphStartnodes: BaUxdNode[] = [];
 
   /** Emits the selected startnode for pathing through nodes */
   @Output('selectedNode')
@@ -45,7 +45,7 @@ export class BaDecisionGraphStartNode {
   }
 
   /** Sets selected startnode and emits it */
-  selectStartNode(node: BaUxdNode): void {
+  selectStartnode(node: BaUxdNode): void {
     this._selectedStartnode = node;
     this.startnodeSelected.emit(this._selectedStartnode);
   }
@@ -56,7 +56,7 @@ export class BaDecisionGraphStartNode {
    */
   isSelectedStartnode(index: number): boolean {
     return (
-      this.decisionGraphStartNodes.indexOf(this._selectedStartnode) === index
+      this.decisionGraphStartnodes.indexOf(this._selectedStartnode) === index
     );
   }
 }

@@ -17,6 +17,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BaUxdNode } from '@dynatrace/shared/barista-definitions';
 import { BaPageService } from '../../shared/services/page.service';
+import { cloneDeep } from 'lodash';
 
 @Component({
   selector: 'ba-decision-graph',
@@ -42,7 +43,7 @@ export class BaDecisionGraph implements OnInit {
 
   ngOnInit(): void {
     this._decisionGraphData$.subscribe(data => {
-      this._decisionGraphData = data;
+      this._decisionGraphData = cloneDeep(data);
       this.getStartNodes();
     });
   }
@@ -51,7 +52,7 @@ export class BaDecisionGraph implements OnInit {
   getStartNodes(): void {
     this._decisionGraphData.forEach(node => {
       if (node.start) {
-        this._decisionGraphStartNodes.push(node);
+        this._decisionGraphStartNodes.push(cloneDeep(node));
       }
     });
     this._decisionGraphStartNodes.sort((a, b) => a.order - b.order);
@@ -66,7 +67,7 @@ export class BaDecisionGraph implements OnInit {
     });
     this._decisionGraphData.forEach(data => {
       if (data.id === id) {
-        this._selectedStartnode = data;
+        this._selectedStartnode = cloneDeep(data);
       } else {
         console.error(`No nodes with id: ${id}`);
       }

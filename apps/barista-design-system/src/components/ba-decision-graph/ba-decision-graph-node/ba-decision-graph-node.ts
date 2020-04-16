@@ -14,25 +14,26 @@
  * limitations under the License.
  */
 
-import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  OnChanges,
-} from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { BaUxdNode, BaUxdEdge } from '@dynatrace/shared/barista-definitions';
 import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
+import { cloneDeep } from 'lodash';
 
 @Component({
   selector: 'ba-decision-graph-node',
   templateUrl: './ba-decision-graph-node.html',
   styleUrls: ['./ba-decision-graph-node.scss'],
 })
-export class BaDecisionGraphNode implements OnChanges {
-  /** Startnode picked from the user */
+export class BaDecisionGraphNode {
   @Input()
-  startnode: BaUxdNode | undefined;
+  set startnode(startnode: BaUxdNode) {
+    this._startnode = startnode;
+    this.resetProgress();
+    this._decisionGraphSteps.push(cloneDeep(startnode));
+  }
+
+  /** Startnode picked from the user */
+  _startnode: BaUxdNode | undefined;
 
   /** Array of all nodes and edges */
   @Input()
@@ -49,16 +50,6 @@ export class BaDecisionGraphNode implements OnChanges {
 
   constructor(private _sanitizer: DomSanitizer) {}
 
-  ngOnChanges(): void {
-    this.resetProgress();
-    console.log('here');
-    if (this.startnode) {
-      this._decisionGraphSteps.push({ ...this.startnode });
-    } else {
-      console.error('No startnode provided!');
-    }
-  }
-
   /**
    * Pushes the next node into the decisionGraphSteps array
    * @param nextNodeId Next node id to be displayed
@@ -74,7 +65,7 @@ export class BaDecisionGraphNode implements OnChanges {
       return node.id === selectedEdge.uxd_node;
     });
     if (nextNode) {
-      this._decisionGraphSteps.push({ ...nextNode });
+      this._decisionGraphSteps.push(cloneDeep(nextNode));
     } else {
       console.error(
         `Next node not found. Id not matching any entries: ${selectedEdge.uxd_node}`,
@@ -86,9 +77,6 @@ export class BaDecisionGraphNode implements OnChanges {
 
   /** Resets user decisions and decisionsarray */
   resetProgress(): void {
-    this._decisionGraphSteps.forEach(node => {
-      this.setSelectedStateOfEdge(node, undefined);
-    });
     this._decisionGraphSteps = [];
     this._started = false;
   }

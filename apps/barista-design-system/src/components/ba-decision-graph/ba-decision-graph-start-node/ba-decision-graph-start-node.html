@@ -1,5 +1,5 @@
 <div class="ba-uxd-startnode-grid">
-  <div *ngFor="let startnode of decisionGraphStartNodes, let i = index">
+  <div *ngFor="let startnode of decisionGraphStartnodes, let i = index">
     <div
       class="ba-uxd-startnode"
       [ngClass]="{
@@ -10,7 +10,7 @@
       <button
         class="ba-uxd-startnode-content"
         [innerHTML]="getSanitizedNodeText(startnode.text)"
-        (click)="selectStartNode(startnode)"
+        (click)="selectStartnode(startnode)"
       ></button>
     </div>
   </div>
