@@ -1,5 +1,6 @@
-<div *ngIf="node">
-  <div *ngFor="let node of decisionGraphSteps">
+<div *ngIf="startnode">
+  {{_decisionGraphSteps}}
+  <div *ngFor="let node of _decisionGraphSteps">
     <div class="ba-uxd-node-wrapper" *ngIf="!node.tasknode">
       <div
         class="ba-uxd-node-content"
@@ -29,10 +30,10 @@
   </div>
 </div>
 <!-- Navigation functionality -->
-<div *ngIf="decisionGraphSteps.length > 0">
+<div *ngIf="_decisionGraphSteps.length > 0">
   <button
     class="ba-uxd-navigation-button"
-    *ngIf="decisionGraphSteps.length > 1"
+    *ngIf="_decisionGraphSteps.length > 1"
     (click)="undoLastStep()"
     dt-button
     variant="secondary"

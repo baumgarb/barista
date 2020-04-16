@@ -4,7 +4,7 @@
 ></ba-decision-graph-start-node>
 <ba-decision-graph-node
   *ngIf="_selectedStartnode"
-  [node]="_selectedStartnode"
+  [startnode]="_selectedStartnode"
   [decisionGraphData]="_decisionGraphData"
   (startOver)="resetToInitial()"
 ></ba-decision-graph-node>

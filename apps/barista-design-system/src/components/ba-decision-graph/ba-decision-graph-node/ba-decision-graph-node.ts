@@ -30,8 +30,9 @@ import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./ba-decision-graph-node.scss'],
 })
 export class BaDecisionGraphNode implements OnChanges {
+  /** Startnode picked from the user */
   @Input()
-  node: BaUxdNode | undefined;
+  startnode: BaUxdNode | undefined;
 
   /** Array of all nodes and edges */
   @Input()
@@ -40,8 +41,8 @@ export class BaDecisionGraphNode implements OnChanges {
   @Output('startOver')
   startOver = new EventEmitter<void>();
 
-  /** Array of all nodes and edges which should be displayed */
-  decisionGraphSteps: BaUxdNode[] = [];
+  /** @internal Array of all nodes and edges which should be displayed */
+  _decisionGraphSteps: BaUxdNode[] = [];
 
   /** @internal Whether the Undo button in template is displayed */
   _started: boolean = false;
@@ -50,7 +51,12 @@ export class BaDecisionGraphNode implements OnChanges {
 
   ngOnChanges(): void {
     this.resetProgress();
-    this.decisionGraphSteps.push(this.node!);
+    console.log('here');
+    if (this.startnode) {
+      this._decisionGraphSteps.push({ ...this.startnode });
+    } else {
+      console.error('No startnode provided!');
+    }
   }
 
   /**
@@ -58,9 +64,9 @@ export class BaDecisionGraphNode implements OnChanges {
    * @param nextNodeId Next node id to be displayed
    */
   setNextNode(selectedEdge: BaUxdEdge): void {
-    this.decisionGraphSteps[this.decisionGraphSteps.length - 1].path.map(
+    this._decisionGraphSteps[this._decisionGraphSteps.length - 1].path.map(
       edge => {
-        edge.selected = edge.text === selectedEdge.text ? true : false;
+        edge.selected = edge.text === selectedEdge.text;
       },
     );
     // Finds next node to display by comparing the id reference to a node, in the edge.
@@ -68,7 +74,7 @@ export class BaDecisionGraphNode implements OnChanges {
       return node.id === selectedEdge.uxd_node;
     });
     if (nextNode) {
-      this.decisionGraphSteps.push(nextNode);
+      this._decisionGraphSteps.push({ ...nextNode });
     } else {
       console.error(
         `Next node not found. Id not matching any entries: ${selectedEdge.uxd_node}`,
@@ -80,10 +86,10 @@ export class BaDecisionGraphNode implements OnChanges {
 
   /** Resets user decisions and decisionsarray */
   resetProgress(): void {
-    this.decisionGraphSteps.forEach(node => {
+    this._decisionGraphSteps.forEach(node => {
       this.setSelectedStateOfEdge(node, undefined);
     });
-    this.decisionGraphSteps.length = 0;
+    this._decisionGraphSteps = [];
     this._started = false;
   }
 
@@ -95,15 +101,15 @@ export class BaDecisionGraphNode implements OnChanges {
 
   /** Removes the last step in the decisionGraphSteps array */
   undoLastStep(): void {
-    const index = this.decisionGraphSteps.length - 2;
-    // Set edge states to undefined
-    if (this.decisionGraphSteps.length > 1) {
-      this.decisionGraphSteps[index] = this.setSelectedStateOfEdge(
-        this.decisionGraphSteps[index],
+    const index = this._decisionGraphSteps.length - 2;
+    // Set edge states to undefined because steps array is modified
+    if (this._decisionGraphSteps.length > 1) {
+      this._decisionGraphSteps[index] = this.setSelectedStateOfEdge(
+        this._decisionGraphSteps[index],
         undefined,
       );
     }
-    this.decisionGraphSteps.splice(this.decisionGraphSteps.length - 1);
+    this._decisionGraphSteps.splice(this._decisionGraphSteps.length - 1);
   }
 
   /** Sets a nodes path.selected state */

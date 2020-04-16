@@ -54,9 +54,7 @@ export class BaDecisionGraph implements OnInit {
         this._decisionGraphStartNodes.push(node);
       }
     });
-    this._decisionGraphStartNodes.sort((a, b) => {
-      return a.order < b.order ? -1 : 1;
-    });
+    this._decisionGraphStartNodes.sort((a, b) => a.order - b.order);
   }
 
   /** Sets the currently selected startnode when emitted from startnode component */
