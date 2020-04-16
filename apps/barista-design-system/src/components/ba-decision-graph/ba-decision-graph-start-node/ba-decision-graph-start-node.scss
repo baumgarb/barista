@@ -3,17 +3,18 @@
   margin-bottom: 20px;
 }
 
-::ng-deep .dt-uxd-startnode p {
+::ng-deep .ba-uxd-startnode p {
   margin-bottom: 20px;
 }
 
-.dt-uxd-startnode-grid {
+.ba-uxd-startnode-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   width: 100%;
+  margin-bottom: 40px;
 }
 
-.dt-uxd-startnode {
+.ba-uxd-startnode {
   background-color: #31339c;
   color: white;
   border: 1px solid #cccccc;
@@ -30,11 +31,11 @@
   }
 }
 
-.dt-uxd-startnode-visited {
+.ba-uxd-startnode-visited {
   background-color: #4556d7;
 }
 
-.dt-uxd-startnode-content {
+.ba-uxd-startnode-content {
   font-size: 18px;
   line-height: 28px;
   margin: 8px 12px;

@@ -6,55 +6,39 @@
   max-width: 100%;
 }
 
-::ng-deep button {
+:host ::ng-deep button {
   @include dt-interactive-reset();
   @include dt-main-font();
 }
 
-::ng-deep .dt-uxd-node-content p {
+:host ::ng-deep .ba-uxd-node-content p {
   margin-bottom: 0;
 }
 
-.dt-uxd-node {
-  height: auto;
-  // width: 100%;
-  border-top: 2px solid #00a1b2;
-  border-bottom: 2px solid #00a1b2;
-  margin: 4px;
+.ba-uxd-node-wrapper {
+  margin-bottom: 68px;
+  padding-left: 24px;
+  border-left: 2px solid #ccc;
 }
 
-.dt-uxd-flex {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex-wrap: nowrap;
-  flex-shrink: 0;
-}
-
-.dt-uxd-node-grid {
-  display: grid;
-  grid-template-columns: 1fr auto;
-}
-
-.dt-uxd-node-content {
+.ba-uxd-node-content {
   width: fit-content;
-  margin: 4px;
-  padding: 4px;
-  border-radius: 2px;
+  margin-bottom: 20px;
 }
 
-.dt-uxd-node-edges {
-  max-height: 36px;
-  width: fit-content;
-  margin: 4px auto;
-}
-
-.dt-uxd-button {
+.ba-uxd-edge-button {
   height: 32px;
   min-width: 40px;
-  border-radius: 3px;
   margin: 0 4px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 3px;
   color: white;
+  background-color: $royalblue-600;
+
+  &:hover {
+    background-color: $royalblue-500;
+  }
 
   &:disabled {
     background-color: $gray-300;
@@ -65,80 +49,37 @@
   }
 }
 
-.dt-uxd-yes {
-  background-color: $purple-600;
+.ba-uxd-yes-edge {
+  height: 44px;
+  width: 44px;
+  border-radius: 22px;
+  margin-right: 32px;
+  padding: 0;
+}
+
+.ba-uxd-no-edge {
+  height: 44px;
+  width: 44px;
+  border-radius: 22px;
+  margin-right: 32px;
+  padding: 0;
+  background-color: $royalblue-800;
 
   &:hover {
-    background-color: $purple-700;
-  }
-
-  &:active {
-    background-color: $purple-800;
+    background-color: $royalblue-700;
   }
 }
 
-.dt-uxd-no {
-  background-color: $red-500;
-
-  &:hover {
-    background-color: $red-600;
-  }
-
-  &:active {
-    background-color: $red-700;
-  }
+.ba-uxd-task-node-wrapper {
+  max-width: 120%;
+  background-color: $royalblue-600;
+  color: white;
+  border-left: 2px solid $royalblue-600;
+  padding: 24px;
+  margin-bottom: 44px;
 }
 
-.dt-uxd-got-it {
-  background-color: $purple-600;
-
-  &:hover {
-    background-color: $purple-700;
-  }
-
-  &:active {
-    background-color: $purple-800;
-  }
-}
-
-.dt-uxd-start-over-button {
-  background-color: $turquoise-500;
-
-  &:hover {
-    background-color: $turquoise-600;
-  }
-
-  &:active {
-    background-color: $turquoise-700;
-  }
-}
-
-.dt-uxd-back-button {
-  background-color: $purple-600;
-
-  &:hover {
-    background-color: $turquoise-600;
-  }
-
-  &:active {
-    background-color: $turquoise-700;
-  }
-}
-
-.dt-uxd-task-node-content {
-  margin: 0 auto;
-  padding: 4px;
-}
-
-.dt-uxd-task-node-wrapper {
-  max-width: 100%;
-  background-color: #fff;
-  border-top: 2px double $purple-600;
-  // border-bottom: 2px double $purple-600;
-  margin: 20px 4px;
-}
-
-.dt-uxd-navigation {
-  width: fit-content;
-  margin: 4px auto;
+.ba-uxd-navigation-button {
+  margin-right: 8px;
+  border: 1px;
 }

@@ -1,19 +1,18 @@
-<div class="dt-uxd-node" *ngIf="node">
+<div *ngIf="node">
   <div *ngFor="let node of decisionGraphSteps">
-    <div class="dt-uxd-node-grid" *ngIf="!node.tasknode">
+    <div class="ba-uxd-node-wrapper" *ngIf="!node.tasknode">
       <div
-        class="dt-uxd-node-content"
+        class="ba-uxd-node-content"
         [innerHTML]="getSanitizedNodeText(node.text)"
       ></div>
-      <div class="dt-uxd-node-edges" *ngIf="node.path.length">
+      <div *ngIf="node.path.length">
         <button
-          class="dt-uxd-button"
+          class="ba-uxd-edge-button"
           *ngFor="let edge of node.path.sort()"
           [ngClass]="
           {
-            'dt-uxd-yes': edge.text.toLowerCase().includes('yes'),
-            'dt-uxd-no': edge.text.toLowerCase().includes('no'),
-            'dt-uxd-got-it': edge.text.toLowerCase().includes('got')
+            'ba-uxd-yes-edge': edge.text.toLowerCase().includes('yes'),
+            'ba-uxd-no-edge': edge.text.toLowerCase().includes('no')
           }"
           [disabled]="edge.selected === false"
           (click)="setNextNode(edge)"
@@ -22,27 +21,25 @@
         </button>
       </div>
     </div>
-    <div class="dt-uxd-task-node-wrapper" *ngIf="node.tasknode">
-      <div
-        class="dt-uxd-task-node-content"
-        [innerHTML]="getSanitizedNodeText(node.text)"
-      ></div>
-    </div>
+    <div
+      class="ba-uxd-task-node-wrapper"
+      *ngIf="node.tasknode"
+      [innerHTML]="getSanitizedNodeText(node.text)"
+    ></div>
   </div>
 </div>
 <!-- Navigation functionality -->
-<div class="dt-uxd-navigation" *ngIf="decisionGraphSteps.length > 0">
+<div *ngIf="decisionGraphSteps.length > 0">
   <button
-    class="dt-uxd-button dt-uxd-back-button"
+    class="ba-uxd-navigation-button"
     *ngIf="decisionGraphSteps.length > 1"
     (click)="undoLastStep()"
+    dt-button
+    variant="secondary"
   >
     Back
   </button>
-  <button
-    class="dt-uxd-button dt-uxd-start-over-button"
-    (click)="resetToInitial()"
-  >
+  <button class="ba-uxd-navigation-button" (click)="resetToInitial()" dt-button>
     Start Over
   </button>
 </div>
