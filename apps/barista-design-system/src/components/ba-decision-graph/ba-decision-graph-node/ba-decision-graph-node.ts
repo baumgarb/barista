@@ -14,7 +14,17 @@
  * limitations under the License.
  */
 
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  ViewChildren,
+  QueryList,
+  ElementRef,
+  AfterContentChecked,
+  AfterViewInit,
+} from '@angular/core';
 import { BaUxdNode, BaUxdEdge } from '@dynatrace/shared/barista-definitions';
 import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
 import { cloneDeep } from 'lodash';
@@ -24,7 +34,7 @@ import { cloneDeep } from 'lodash';
   templateUrl: './ba-decision-graph-node.html',
   styleUrls: ['./ba-decision-graph-node.scss'],
 })
-export class BaDecisionGraphNode {
+export class BaDecisionGraphNode implements AfterViewInit {
   @Input()
   set startnode(startnode: BaUxdNode) {
     this._startnode = startnode;
@@ -42,6 +52,8 @@ export class BaDecisionGraphNode {
   @Output('startOver')
   startOver = new EventEmitter<void>();
 
+  @ViewChildren('nodes') nodes: QueryList<ElementRef>;
+
   /** @internal Array of all nodes and edges which should be displayed */
   _decisionGraphSteps: BaUxdNode[] = [];
 
@@ -49,6 +61,10 @@ export class BaDecisionGraphNode {
   _started: boolean = false;
 
   constructor(private _sanitizer: DomSanitizer) {}
+
+  ngAfterViewInit(): void {
+    this.nodes.last.nativeElement.scrollIntoView({ behavior: 'smooth' });
+  }
 
   /**
    * Pushes the next node into the decisionGraphSteps array
@@ -71,7 +87,7 @@ export class BaDecisionGraphNode {
         `Next node not found. Id not matching any entries: ${selectedEdge.uxd_node}`,
       );
     }
-
+    this.nodes.last.nativeElement.scrollIntoView({ behavior: 'smooth' });
     this._started = true;
   }
 
