@@ -25,6 +25,8 @@ import { cloneDeep } from 'lodash';
   styleUrls: ['./ba-decision-graph.scss'],
 })
 export class BaDecisionGraph implements OnInit {
+  //TODO: Scroll to top when resetting to initial state
+
   /** Data from database */
   private _decisionGraphData$ = this._pageService._getPage('uxdg-data');
 

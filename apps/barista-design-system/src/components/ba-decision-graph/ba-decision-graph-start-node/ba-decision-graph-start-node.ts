@@ -23,7 +23,7 @@ import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
   templateUrl: './ba-decision-graph-start-node.html',
   styleUrls: ['./ba-decision-graph-start-node.scss'],
 })
-export class BaDecisionGraphStartNode {
+export class BaDecisionGraphStartnode {
   /** Array of startnodes */
   @Input('startnodes')
   decisionGraphStartnodes: BaUxdNode[] = [];

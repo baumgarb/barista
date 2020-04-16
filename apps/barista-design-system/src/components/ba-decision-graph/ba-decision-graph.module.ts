@@ -17,24 +17,26 @@
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { BaDecisionGraphNode } from './ba-decision-graph-node/ba-decision-graph-node';
-import { BaDecisionGraphStartNode } from './ba-decision-graph-start-node/ba-decision-graph-start-node';
 import { BaDecisionGraph } from './ba-decision-graph';
-import { BaDecisiongraphNodeNavigation } from './ba-decision-graph-node/ba-decision-graph-node-navigation/ba-decision-graph-node-navigation';
+import { BaDecisionGraphStartnode } from './ba-decision-graph-start-node';
+import {
+  BaDecisionGraphNode,
+  BaDecisiongraphNodeNavigation,
+} from './ba-decision-graph-node';
 
 @NgModule({
   imports: [CommonModule, BrowserModule],
   declarations: [
     BaDecisionGraph,
+    BaDecisionGraphStartnode,
     BaDecisionGraphNode,
     BaDecisiongraphNodeNavigation,
-    BaDecisionGraphStartNode,
   ],
   exports: [
     BaDecisionGraph,
+    BaDecisionGraphStartnode,
     BaDecisionGraphNode,
     BaDecisiongraphNodeNavigation,
-    BaDecisionGraphStartNode,
   ],
 })
 export class BaDecisionGraphModule {}

@@ -30,7 +30,7 @@ import { BaLayoutGrid } from './layout-grid/layout-grid';
 import { BaColor } from './color-component/color';
 import { BaLayoutGridItem } from './layout-grid/layout-grid-item';
 import { BaDecisionGraph } from './ba-decision-graph/ba-decision-graph';
-import { BaDecisionGraphStartNode } from './ba-decision-graph/ba-decision-graph-start-node/ba-decision-graph-start-node';
+import { BaDecisionGraphStartnode } from './ba-decision-graph/ba-decision-graph-start-node/ba-decision-graph-start-node';
 import { BaDecisionGraphNode } from './ba-decision-graph/ba-decision-graph-node/ba-decision-graph-node';
 import { BaDecisiongraphNodeNavigation } from './ba-decision-graph/ba-decision-graph-node/ba-decision-graph-node-navigation/ba-decision-graph-node-navigation';
 
@@ -47,7 +47,7 @@ export const BA_CONTENT_COMPONENTS: any[] = [
   BaLayoutGridItem,
   BaLayoutGrid,
   BaColorGrid,
-  BaDecisionGraphStartNode,
+  BaDecisionGraphStartnode,
   BaDecisiongraphNodeNavigation,
   BaDecisionGraphNode,
   BaDecisionGraph,
