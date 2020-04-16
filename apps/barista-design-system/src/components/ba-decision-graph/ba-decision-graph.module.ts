@@ -20,14 +20,21 @@ import { NgModule } from '@angular/core';
 import { BaDecisionGraphNode } from './ba-decision-graph-node/ba-decision-graph-node';
 import { BaDecisionGraphStartNode } from './ba-decision-graph-start-node/ba-decision-graph-start-node';
 import { BaDecisionGraph } from './ba-decision-graph';
+import { BaDecisiongraphNodeNavigation } from './ba-decision-graph-node/ba-decision-graph-node-navigation/ba-decision-graph-node-navigation';
 
 @NgModule({
   imports: [CommonModule, BrowserModule],
   declarations: [
     BaDecisionGraph,
     BaDecisionGraphNode,
+    BaDecisiongraphNodeNavigation,
     BaDecisionGraphStartNode,
   ],
-  exports: [BaDecisionGraph, BaDecisionGraphNode, BaDecisionGraphStartNode],
+  exports: [
+    BaDecisionGraph,
+    BaDecisionGraphNode,
+    BaDecisionGraphStartNode,
+    BaDecisiongraphNodeNavigation,
+  ],
 })
 export class BaDecisionGraphModule {}

@@ -32,6 +32,7 @@ import { BaLayoutGridItem } from './layout-grid/layout-grid-item';
 import { BaDecisionGraph } from './ba-decision-graph/ba-decision-graph';
 import { BaDecisionGraphStartNode } from './ba-decision-graph/ba-decision-graph-start-node/ba-decision-graph-start-node';
 import { BaDecisionGraphNode } from './ba-decision-graph/ba-decision-graph-node/ba-decision-graph-node';
+import { BaDecisiongraphNodeNavigation } from './ba-decision-graph/ba-decision-graph-node/ba-decision-graph-node-navigation/ba-decision-graph-node-navigation';
 
 /**
  * The order of the following components is relevant in case they are nested.
@@ -47,6 +48,7 @@ export const BA_CONTENT_COMPONENTS: any[] = [
   BaLayoutGrid,
   BaColorGrid,
   BaDecisionGraphStartNode,
+  BaDecisiongraphNodeNavigation,
   BaDecisionGraphNode,
   BaDecisionGraph,
 ];

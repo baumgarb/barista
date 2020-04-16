@@ -22,7 +22,6 @@ import {
   ViewChildren,
   QueryList,
   ElementRef,
-  AfterContentChecked,
   AfterViewInit,
 } from '@angular/core';
 import { BaUxdNode, BaUxdEdge } from '@dynatrace/shared/barista-definitions';
@@ -114,6 +113,10 @@ export class BaDecisionGraphNode implements AfterViewInit {
       );
     }
     this._decisionGraphSteps.splice(this._decisionGraphSteps.length - 1);
+    this.nodes.last.nativeElement.scrollIntoView({ behavior: 'smooth' });
+    if (this._decisionGraphSteps.length < 2) {
+      this._started = false;
+    }
   }
 
   /** Sets a nodes path.selected state */

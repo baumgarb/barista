@@ -27,19 +27,10 @@
       [innerHTML]="getSanitizedNodeText(node.text)"
     ></div>
   </div>
-</div>
-<!-- Navigation functionality -->
-<div *ngIf="_decisionGraphSteps.length > 0">
-  <button
-    class="ba-uxd-navigation-button"
-    *ngIf="_decisionGraphSteps.length > 1"
-    (click)="undoLastStep()"
-    dt-button
-    variant="secondary"
-  >
-    Back
-  </button>
-  <button class="ba-uxd-navigation-button" (click)="resetToInitial()" dt-button>
-    Start Over
-  </button>
+  <ba-decision-graph-node-navigation
+    *ngIf="_decisionGraphSteps.length > 0"
+    [_showBackButton]="_started"
+    (_resetToInitial)="resetToInitial()"
+    (_undoLastStep)="undoLastStep()"
+  ></ba-decision-graph-node-navigation>
 </div>
