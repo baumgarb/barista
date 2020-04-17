@@ -146,9 +146,18 @@ pipeline {
                   configuration='production'
                 fi
 
-                node \
-                  --max_old_space_size=8192 \
-                  ./node_modules/.bin/ng run barista-design-system:build:${configuration}
+                cat dist/barista-data/routes.txt
+
+                # node \
+                #   --max_old_space_size=8192 \
+                #   ./node_modules/.bin/ng run barista-design-system:build:${configuration}
+
+                node ./node_modules/.bin/ng run barista-design-system:build-frontend
+
+                ls -lah dist/
+                ls -lah dist/apps/
+                ls -lah dist/apps/barista-design-system/
+                ls -lah dist/apps/barista-design-system/browser
               '''
 
               stash includes: "dist/**/*", name: 'dist'
@@ -166,7 +175,55 @@ pipeline {
       }
     }
 
-    stage("Deploy Barista") {
+     stage("Deploy Barista Public") {
+      when {
+        expression { return !params.INTERNAL_VERSION }
+      }
+      agent {
+        node {
+          label "k8s-barista-builder"
+        }
+      }
+
+      options {
+        skipDefaultCheckout true
+      }
+
+      stages {
+        stage("Build Docker image") {
+          steps {
+            dir(BARISTA_PATH) {
+              // Restore stashed dist for barista
+              unstash "dist"
+              unstash "deployment"
+
+              sh """
+                ls -lah ./
+
+                ls -lah dist/
+                ls -lah dist/apps/
+                ls -lah dist/apps/barista-design-system/
+                ls -lah dist/apps/barista-design-system/browser
+
+
+                ls -lah node_modules/.bin
+              """
+            }
+          }
+        }
+      }
+
+      post {
+        always {
+          cleanWs deleteDirs: true
+        }
+      }
+    }
+
+    stage("Deploy Barista Internal") {
+      when {
+        expression { return params.INTERNAL_VERSION }
+      }
       agent {
         node {
           label "k8s-docker"
@@ -184,6 +241,16 @@ pipeline {
               // Restore stashed dist for barista
               unstash "dist"
               unstash "deployment"
+
+
+              sh """
+                ls -lah dist/
+                ls -lah deployment/
+
+
+                pwd
+              """
+
 
               sh """
                 docker build \
